@@ -1,0 +1,138 @@
+<html>
+<head>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/white.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section>
+        <h3>Introduction to WebGL</h3>
+        <div>
+          Tom McCauley
+          <p>thomas.mccauley@cern.ch</p>
+          <p>@tpmccauley</p>
+          <p>University of Notre Dame, USA</p>
+        </div>
+        <div>
+          CERN Study Group, X April 2016
+        </div>
+      </section>
+
+      <section>
+        <h3>Outline</h3>
+        <ul>
+          <li>
+          <li>
+        </ul>
+      </section>
+
+      <section>
+        <p>THREE.js</p>
+        <ul>
+          <li>http://threejs.org
+        </ul>
+      </section>
+
+      <section>
+        <p>Check if WebGL is enabled:</p>
+        <ul>
+          <li><a target="_blank" href="http://caniuse.com/#feat=webgl">http://caniuse.com/#feat=webgl</a>
+          <li><a target="_blank" href="http://www.doesmybrowsersupportwebgl.com">http://www.doesmybrowsersupportwebgl.com</a>
+        </ul>
+      </section>
+
+      <section>
+        <p>Minimal page</p>
+      </section>
+
+      <section>
+        <p>There are 3 essentials: scene, camera, renderer</p>
+      </section>
+
+      <section>
+        <p>Add a scene and a camera</p>
+      </section>
+
+      <section>
+        <p>Add a renderer</p>
+        <p><a target="_blank" href="../code/1.html">See result here</a></p>
+      </section>
+
+      <section>
+        <section>
+          <p>That was underwhelming. What gives?</p>
+        </section>
+        <section>
+          <p>The canvas is there. We just haven't added anything to the scene yet:</p>
+          <img src="./img/one.png"></img>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <p>Add a cube to the scene</p>
+          <p><a target="_blank" href="../code/2.html">See result here</a></p>
+        </section>
+        <section>
+          More on geometries, materials, and meshes here
+        </section>
+      </section>
+
+      <section>
+        <p>Better, but it doesn't do much does it?</p>
+      </section>
+
+      <section>
+        <p>Add some controls and change to wireframe</p>
+        <p><a target="_blank" href="../code/3.html">See result here</a></p>
+      </section>
+
+      <section>
+        <p>Change from wireframe</p>
+        <p><a target="_blank" href="../code/4.html">See result here</a></p>
+      </section>
+
+      <section>
+        <section>
+          <p>Change the material</p>
+          <p><a target="_blank" href="../code/5.html">See result here</a></p>
+        </section>
+        <section>
+        </section>
+      </section>
+
+      <section>
+        <p>Add an ambient light</p>
+        <p><a target="_blank" href="../code/6.html">See result here</a></p>
+      </section>
+
+      <section>
+        <p>Add a directional light (with an axis helper to remind us of the direction)</p>
+        <p><a target="_blank" href="../code/7.html">See result here</a></p>
+      </section>
+
+      <section>
+        <p>Add a texture</p>
+      </section>
+
+      <section>
+        <p>Let's animate</p>
+      </section>
+
+      <section>
+        <h3>References and further reading</h3>
+        <ul>
+          <li>JavaScript: The Good Parts, Douglas Crockford
+          <li>WebGL Programming Guide, Kouichi Matsuda and Rodger Lea
+        </ul>
+      </section>
+    </div>
+  </div>
+  <script src="js/reveal.js"></script>
+  <script>
+    Reveal.initialize();
+  </script>
+</body>
+</html>
