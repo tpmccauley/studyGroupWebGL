@@ -1,5 +1,6 @@
 <html>
 <head>
+  <title>CERN Study Group: WebGL</title>
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/theme/white.css">
 </head>
@@ -9,29 +10,38 @@
 
       <section>
         <h3>Introduction to WebGL</h3>
+        <h4>Using Three.js</h4>
         <div>
           Tom McCauley
-          <p>thomas.mccauley@cern.ch</p>
-          <p>@tpmccauley</p>
+          <p><a href="http://cern.ch/mccauley" target="_blank">thomas.mccauley@cern.ch</a></p>
+          <p><a href="https://github.com/tpmccauley" target="_blank">@tpmccauley</a></p>
           <p>University of Notre Dame, USA</p>
         </div>
         <div>
-          CERN Study Group, X April 2016
+          CERN Study Group, 22 April 2016
         </div>
       </section>
 
       <section>
         <h3>Outline</h3>
         <ul>
-          <li> WebGL
-          <li> HTML, CSS, JavaScript
-          <li>
+          <li>WebGL?
+          <li>Three.js
+          <li>HTML, CSS, JavaScript
+          <li>Let's develop a very simple application
+          <li>Further information
         </ul>
+        <p>
+          Slides and code examples:
+        </p>
+        <p>
+           <a target="_blank" href="https://github.com/tpmccauley/studyGroupWebGL">https://github.com/tpmccauley/studyGroupWebGL</a>
+        </p>
       </section>
 
       <section>
         <section>
-          <p>WebGL</p>
+          <h3>WebGL</h3>
         </section>
         <section>
           A bit more about WebGL here
@@ -40,25 +50,53 @@
 
       <section>
         <section>
-          <p>THREE.js</p>
-          <ul>
-            <li>http://threejs.org
-          </ul>
+        <h3>Is WebGL enabled?</h3>
+        <p>
+          <a target="_blank" href="http://caniuse.com/#feat=webgl">http://caniuse.com/#feat=webgl</a>
+          <img src="./img/caniusewebgl.png"></img>
+        </p>
+        <p><a target="_blank" href="http://www.doesmybrowsersupportwebgl.com">http://www.doesmybrowsersupportwebgl.com</a></p>
         </section>
         <section>
-          Show an example of raw WebGL code vs three.js
+          What to do if WebGL is not enabled or doesn't work?
         </section>
       </section>
 
       <section>
-        <p>Check if WebGL is enabled:</p>
-        <ul>
-          <li><a target="_blank" href="http://caniuse.com/#feat=webgl">http://caniuse.com/#feat=webgl</a>
-          <li><a target="_blank" href="http://www.doesmybrowsersupportwebgl.com">http://www.doesmybrowsersupportwebgl.com</a>
-        </ul>
+        <section>
+          <h3>Three.js</h3>
+          <ul>
+            <li>A JavaScript API for WebGL
+            <li>Developed and maintained by Ricardo Cabello <a href="https://github.com/mrdoob/three.js" target="_blank">@mrdoob</a>
+            <li>Large developer community
+          </ul>
+          <p><a href="http://threejs.org" target="_blank">http://threejs.org</a></p>
+        </section>
+        <section>
+          Show an example of raw WebGL code vs Three.js
+        </section>
       </section>
 
       <section>
+        <section>
+          <h3>JavaScript</h3>
+        </section>
+        <section>
+          <p>Firefox</p>
+          <img src="./img/firefox.png"></img>
+        </section>
+        <section>
+          <p>Chrome</p>
+          <img src="./img/chrome.png"></img>
+        </section>
+        <section>
+          <p>Safari</p>
+          <img src="./img/safari.png"></img>
+        </section>
+      </section>
+
+      <section>
+        <section>
         <p>Let's start with a minimal page</p>
         <pre><code style="max-height: 100%">
         &lt;!DOCTYPE html&gt;
@@ -81,79 +119,78 @@
         </code></pre>
       </section>
 
+        <section>
+            <p>If you have a local copy of the slides from GitHub, you can open code/0.html, hack away, and see the results in the browser (e.g.)</p>
+            <img src="img/browser.png"></img>
+            <p>If you are running in Chrome you may have to run the page from localhost:8000/code/0.html instead (e.g.)</p>
+            <img src="img/server.png"></img>
+        </section>
+
+      </section>
+
       <section>
         <p>There are 3 essentials: scene, camera, renderer</p>
       </section>
 
       <section>
-        <section>
-        <p>Add a scene and a camera</p>
+        <p>Add a scene and a camera:</p>
         <pre><code style="max-height: 100%">
-          var w = window.innerWidth;
-          var h = window.innerHeight;
+ var w = window.innerWidth;
+ var h = window.innerHeight;
 
-          var scene = new THREE.Scene();
+ var scene = new THREE.Scene();
 
-          // Args: field-of-view, aspect ratio, near, far
-          var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
-          camera.position.z = 5;
+ // Args: field-of-view, aspect ratio, near, far
+ var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
+ camera.position.z = 2;
         </code></pre>
-        </section>
-        <section>
-          Explain fov, aspect, etc.
-        </section>
       </section>
 
       <section>
         <p>Add a renderer and a render loop</p>
         <pre><code style="max-height: 100%">
-          var renderer = new THREE.WebGLRenderer({antialias:true});
-          renderer.setSize(w, h);
-          renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
+ var renderer = new THREE.WebGLRenderer({antialias:true});
+ renderer.setSize(w, h);
+ renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
 
-          document.body.appendChild(renderer.domElement);
+ document.body.appendChild(renderer.domElement);
 
-          var render = function () {
-            requestAnimationFrame(render);
-            renderer.render(scene, camera);
-          };
+ var render = function () {
+   requestAnimationFrame(render);
+   renderer.render(scene, camera);
+ };
 
-          render();
+ render();
         </code></pre>
         <p><a target="_blank" href="../code/1.html">See result here</a></p>
       </section>
 
       <section>
-        <section>
-          <p>That was underwhelming. What gives?</p>
-        </section>
-        <section>
-          <p>The canvas is there. We just haven't added anything to the scene yet:</p>
-          <img src="./img/one.png"></img>
-        </section>
+        <p>The canvas is there. We just haven't added anything to the scene yet:</p>
+        <img src="./img/one.png"></img>
       </section>
 
       <section>
         <section>
-          <p>Add a cube to the scene</p>
+          <p>Add a cube to the scene:</p>
           <pre><code style="max-height: 100%">
-            var renderer = new THREE.WebGLRenderer({antialias:true});
-            renderer.setSize(w, h);
-            renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
+ var renderer = new THREE.WebGLRenderer({antialias:true});
+ renderer.setSize(w, h);
+ renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
 
-            document.body.appendChild(renderer.domElement);
+ document.body.appendChild(renderer.domElement);
 
-            var geometry = new THREE.BoxGeometry(1, 1, 1);
-            var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
-            var cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
+ var geometry = new THREE.BoxGeometry(1, 1, 1);
+ var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
+ var cube = new THREE.Mesh(geometry, material);
+ scene.add(cube);
 
-            var render = function () {
-              requestAnimationFrame(render);
-              renderer.render(scene, camera);
-            };
+ var render = function () {
+   requestAnimationFrame(render);
+   renderer.render(scene, camera);
+ };
 
-            render();
+ render();
           </code></pre>
           <p><a target="_blank" href="../code/2.html">See result here</a></p>
         </section>
@@ -163,103 +200,104 @@
       </section>
 
       <section>
-        <p>Better, but it doesn't do much does it?</p>
+        <p>Better. But it doesn't do much, does it?</p>
       </section>
 
       <section>
-        <p>Add some controls and change cube to wireframe</p>
+      <p>Even knowing that it won't do anything, I still can't help not to clicking on the cube
+        and trying to rotate it. However, that won't work (yet). We need to add controls
+        that "listen" for what we do and then do something accordingly (like zoom or rotate).
+      </p>
+    </section>
+
+      <section>
+        <p>Add some controls and change cube to wireframe:</p>
         <pre><code style="max-height: 100%">
-          &lt;script src="js/TrackballControls.js">&lt;/script&gt;
+ &lt;script src="js/TrackballControls.js">&lt;/script&gt;
         </code></pre>
         <pre><code style="max-height: 100%">
-            var controls = new THREE.TrackballControls(camera, renderer.domElement);
-            controls.rotateSpeed = 3.0;
-            controls.zoomSpeed = 0.5;
+ var controls = new THREE.TrackballControls(camera, renderer.domElement);
+ controls.rotateSpeed = 3.0;
+ controls.zoomSpeed = 0.5;
 
-            var geometry = new THREE.BoxGeometry(1, 1, 1);
-            var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:true});
-            var cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
+ var geometry = new THREE.BoxGeometry(1, 1, 1);
+ var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:true});
+ var cube = new THREE.Mesh(geometry, material);
+ scene.add(cube);
 
-            var render = function () {
-              requestAnimationFrame(render);
-              controls.update();
-              renderer.render(scene, camera);
-            };
+ var render = function () {
+   requestAnimationFrame(render);
+   controls.update();
+   renderer.render(scene, camera);
+ };
         </code></pre>
         <p><a target="_blank" href="../code/3.html">See result here</a></p>
       </section>
 
       <section>
-        <p>Change from wireframe</p>
+        <p>Change from wireframe:</p>
         <pre><code style="max-height: 100%">
-            var controls = new THREE.TrackballControls(camera, renderer.domElement);
-            controls.rotateSpeed = 3.0;
-            controls.zoomSpeed = 0.5;
-
-            var geometry = new THREE.BoxGeometry(1, 1, 1);
-            var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
-            var cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
-
-            var render = function () {
-              requestAnimationFrame(render);
-              controls.update();
-              renderer.render(scene, camera);
-            };
+ var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
         </code></pre>
         <p><a target="_blank" href="../code/4.html">See result here</a></p>
       </section>
 
       <section>
-          <p>Change the material</p>
+        <section>
+          <p>Let's change the material to something "fancier":</p>
           <pre><code style="max-height: 100%">
-          var geometry = new THREE.BoxGeometry(1, 1, 1);
-          var material = new THREE.MeshPhongMaterial({color: 0x00ff00});
-          var cube = new THREE.Mesh(geometry, material);
-          scene.add(cube);
+ var geometry = new THREE.BoxGeometry(1, 1, 1);
+ var material = new THREE.MeshPhongMaterial({color: 0x00ff00});
+ var cube = new THREE.Mesh(geometry, material);
+ scene.add(cube);
           </code></pre>
           <p><a target="_blank" href="../code/5.html">See result here</a></p>
+        </section>
+          <section>
+            More here on materials and lighting
+          </section>
       </section>
 
       <section>
         <section>
           Just black?
         </section>
-        <section>
-          More here on materials and lighting
-        </section>
       </section>
 
       <section>
-        <p>Add an ambient light</p>
+        <p>For some materials, we need a light. Let's add an ambient light to the scene:</p>
         <pre><code style="max-height: 100%">
-        var light = new THREE.AmbientLight(0xffffff);
-        scene.add(light);
+ var light = new THREE.AmbientLight(0xffffff);
+ scene.add(light);
         </code></pre>
         <p><a target="_blank" href="../code/6.html">See result here</a></p>
       </section>
 
       <section>
-        <p>Let's tone down the ambient light a bit and add a directional light. I've added in the
-        example an axes indicator. RGB:XYZ
+        <p>Let's tone down the ambient light a bit, add a directional light, and change the initial position of the camera.
+           I've also added in the example an axes indicator: <span style="color:red;">X</span><span style="color:green;">Y</span><span style="color:blue;">Z</span>
         </p>
         <pre><code style="max-height: 100%">
-        var light = new THREE.AmbientLight(0x404040);
-        scene.add(light);
+ camera.position.x = 1.5;
+ camera.position.y = 1.5;
+ camera.position.z = 1.5;
+        </code></pre>
+        <pre><code style="max-height: 100%">
+ var light = new THREE.AmbientLight(0x404040);
+ scene.add(light);
 
-        var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        directionalLight.position.set( 0, 0.5, 1);
-        scene.add(directionalLight);
+ var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+ directionalLight.position.set( 0, 0.5, 1);
+ scene.add(directionalLight);
         </code></pre>
         <p><a target="_blank" href="../code/7.html">See result here</a></p>
       </section>
 
       <section>
-        <p>Add a texture</p>
+        <p>Add a texture to the material:</p>
         <pre><code style="max-height: 100%">
-        var material = new THREE.MeshPhongMaterial();
-        material.map = new THREE.ImageUtils.loadTexture("cms-color-medium.png");
+ var material = new THREE.MeshPhongMaterial();
+ material.map = new THREE.ImageUtils.loadTexture("cms-color-medium.png");
         </code></pre>
         <p><a target="_blank" href="../code/8.html">See result here</a></p>
       </section>
@@ -267,48 +305,50 @@
       <section>
         <p>Let's animate</p>
         <pre><code style="max-height: 100%">
-        var render = function () {
-          requestAnimationFrame( render );
-          controls.update();
+ var render = function () {
+   requestAnimationFrame( render );
+   controls.update();
 
-          cube.rotation.x += 0.01;
-          cube.rotation.y += 0.01;
+   cube.rotation.x += 0.01;
+   cube.rotation.y += 0.01;
 
-          renderer.render(scene, camera);
-        };
+   renderer.render(scene, camera);
+ };
         </code></pre>
         <p><a target="_blank" href="../code/9.html">See result here</a></p>
       </section>
 
       <section>
-        <p>Let's add an event listener (listen for "click") and add some other images</p>
+        <p>Let's add an event listener (listen for "click") and add some other images:</p>
         <pre><code style="max-height: 100%">
-        var textures = ["img/cms-color-medium.png",
-                        "img/ATLAS-Logo-Ref-RGB-H_0.jpg",
-                        "img/4_Color_Logo_CB.png",
-                        "img/lhcb_logo.png",
-                        "img/CERN-logo.jpg"];
+ var textures = ["img/cms-color-medium.png",
+                 "img/ATLAS-Logo-Ref-RGB-H_0.jpg",
+                 "img/newlogo2.jpg",
+                 "img/lhcb_logo.png",
+                 "img/CERN-logo.jpg"];
 
-        var ti = 0;
-        material.map = new THREE.TextureLoader().load(textures[0]);
-        var cube = new THREE.Mesh( geometry, material );
-        scene.add( cube );
-
-        [...]
-
-        window.addEventListener('click', function(){
-          ti = ti === textures.length-1 ? 0 : ti+1;
-          material.map = new THREE.TextureLoader().load(textures[ti]);
-        });
+ var ti = 0;
+ material.map = new THREE.TextureLoader().load(textures[0]);
+ var cube = new THREE.Mesh( geometry, material );
+ scene.add( cube );
+ </code></pre>
+<pre><code style="max-height: 100%">
+ window.addEventListener('click', function(){
+   ti = ti === textures.length-1 ? 0 : ti+1;
+   material.map = new THREE.TextureLoader().load(textures[ti]);
+ });
       </code></pre>
       <p><a target="_blank" href="../code/10.html">See result here</a></p>
       </section>
 
       <section>
-        <h3>References and further reading</h3>
+        <h3>References and further information</h3>
         <ul>
-          <li>JavaScript: The Good Parts, Douglas Crockford
-          <li>WebGL Programming Guide, Kouichi Matsuda and Rodger Lea
+          <li><a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">"JavaScript: The Good Parts", D. Crockford</a>
+          <li><a href="https://www.nostarch.com/hemingway" target="_blank">"If Hemingway Wrote JavaScript", A. Croll</a>
+          <li><a href="http://www.amazon.co.uk/WebGL-Programming-Guide-Interactive-Graphics/dp/0321902920" target="_blank">"WebGL Programming Guide", K. Matsuda and R. Lea</a>
+          <li><a href="http://threejs.org/editor" target="_blank">http://threejs.org/editor</a>
+          <li><a href="http://threejs.org/examples" target="_blank">http://threejs.org/examples</a>
         </ul>
       </section>
     </div>
