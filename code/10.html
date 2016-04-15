@@ -29,22 +29,41 @@
 			var light = new THREE.AmbientLight( 0x404040 );
 			scene.add( light );
 
-			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+			var directionalLight = new THREE.DirectionalLight( 0xffffff, 1);
 			directionalLight.position.set( 0, 0.5, 1);
 			scene.add( directionalLight );
 
       var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
+      var material = new THREE.MeshPhongMaterial();
+
+			var textures = ["img/cms-color-medium.png",
+											"img/ATLAS-Logo-Ref-RGB-H_0.jpg",
+											"img/4_Color_Logo_CB.png",
+											"img/lhcb_logo.png",
+											"img/CERN-logo.jpg"];
+
+			var ti = 0;
+			material.map = new THREE.TextureLoader().load(textures[0]);
       var cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
 
 			var render = function () {
 				requestAnimationFrame( render );
 				controls.update();
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
 				renderer.render(scene, camera);
 			};
 
 			render();
+
+			window.addEventListener('click', function(){
+				ti = ti === textures.length-1 ? 0 : ti+1;
+				console.log(ti);
+				material.map = new THREE.TextureLoader().load(textures[ti]);
+			});
 		</script>
 	</body>
 </html>

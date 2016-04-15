@@ -12,14 +12,20 @@
 		<script src="js/three.min.js"></script>
 		<script src="js/TrackballControls.js"></script>
 		<script>
+			var w = window.innerWidth;
+			var h = window.innerHeight;
+
 			var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-			camera.position.z = 5;
+
+			// Args: field-of-view, aspect ratio, near, far
+			var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
+			camera.position.z = 2;
 
 			var renderer = new THREE.WebGLRenderer({antialias:true});
-			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize(w, h);
 			renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-			document.body.appendChild( renderer.domElement );
+
+			document.body.appendChild(renderer.domElement);
 
 			var controls = new THREE.TrackballControls(camera, renderer.domElement);
 			controls.rotateSpeed = 3.0;
@@ -31,7 +37,7 @@
       scene.add( cube );
 
 			var render = function () {
-				requestAnimationFrame( render );
+				requestAnimationFrame(render);
 				controls.update();
 				renderer.render(scene, camera);
 			};

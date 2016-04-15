@@ -26,21 +26,26 @@
 			controls.rotateSpeed = 3.0;
   		controls.zoomSpeed = 0.5;
 
-			var light = new THREE.AmbientLight( 0x404040 );
-			scene.add( light );
+			var light = new THREE.AmbientLight(0x404040);
+			scene.add(light);
 
-			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+			var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 			directionalLight.position.set( 0, 0.5, 1);
 			scene.add( directionalLight );
 
       var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
+      var material = new THREE.MeshPhongMaterial();
+			material.map = new THREE.TextureLoader().load("img/cms-color-medium.png");
       var cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
 
 			var render = function () {
 				requestAnimationFrame( render );
 				controls.update();
+
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+
 				renderer.render(scene, camera);
 			};
 
