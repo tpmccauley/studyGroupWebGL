@@ -9,8 +9,8 @@
     <div class="slides">
 
       <section>
-        <h3>Introduction to WebGL</h3>
-        <h4>Using Three.js</h4>
+        <h3>Interactive graphics in the browser with WebGL</h3>
+        <h4>(Using Three.js)</h4>
         <div>
           Tom McCauley
           <p><a href="http://cern.ch/mccauley" target="_blank">thomas.mccauley@cern.ch</a></p>
@@ -25,12 +25,13 @@
       <section>
         <h3>Outline</h3>
         <ul>
-          <li>WebGL?
+          <li>WebGL
           <li>Three.js
-          <li>HTML, CSS, JavaScript
           <li>Let's develop a very simple application
           <li>Further information
         </ul>
+        <p>This is not meant to be a comprehensive introduction to WebGL, etc. but a quick code-along to
+          get up-and-running. I will assume some knowledge of HTML, etc. and little-to-no JavaScript knowledge.
         <p>
           Slides and code examples:
         </p>
@@ -40,47 +41,73 @@
       </section>
 
       <section>
-        <section>
-          <h3>WebGL</h3>
-        </section>
-        <section>
-          A bit more about WebGL here
-        </section>
+        <h3>WebGL</h3>
+        <ul>
+          <li>JavaScript API for rendering interactive graphics in the browser (in the HTML5 canvas)
+          <li>No plugins needed
+          <li>Use the GPU
+        </ul>
+        <a href="http://cern.ch/ispy-webgl" target="_blank">Event display for CMS</a>
       </section>
 
       <section>
-        <section>
         <h3>Is WebGL enabled?</h3>
+        <h4>Not for all browsers (yet).</h4>
         <p>
           <a target="_blank" href="http://caniuse.com/#feat=webgl">http://caniuse.com/#feat=webgl</a>
           <img src="./img/caniusewebgl.png"></img>
         </p>
         <p><a target="_blank" href="http://www.doesmybrowsersupportwebgl.com">http://www.doesmybrowsersupportwebgl.com</a></p>
-        </section>
-        <section>
-          What to do if WebGL is not enabled or doesn't work?
-        </section>
+      </section>
+
+      <section>
+        <h3>Three.js</h3>
+        <ul>
+          <li>A JavaScript API for WebGL; "raw" WebGL requires a lot of boilerplate and may include shader language
+          <li>Developed and maintained by Ricardo Cabello <a href="https://github.com/mrdoob/three.js" target="_blank">@mrdoob</a>
+          <li>Large open developer community
+        </ul>
+        <p><a href="http://threejs.org" target="_blank">http://threejs.org</a></p>
       </section>
 
       <section>
         <section>
-          <h3>Three.js</h3>
-          <ul>
-            <li>A JavaScript API for WebGL
-            <li>Developed and maintained by Ricardo Cabello <a href="https://github.com/mrdoob/three.js" target="_blank">@mrdoob</a>
-            <li>Large developer community
-          </ul>
-          <p><a href="http://threejs.org" target="_blank">http://threejs.org</a></p>
+        <p>Let's start with a minimal page</p>
+        <pre><code style="max-height: 100%">
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;meta charset=utf-8&gt;
+            &lt;title&gt;CERN Study Group: WebGL&lt;/title&gt;
+            &lt;style&gt;
+              body { margin: 0; }
+              canvas { width: 100%; height: 100% }
+              #stats { position: absolute; top:0; left: 0; }
+            &lt;/style&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;script src="js/three.min.js"&gt;&lt;/script&gt;
+            &lt;script src="js/stats.min.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+            &lt;!-- We we will put our JavaScript here --&gt;
+            &lt;/script&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+        </code></pre>
         </section>
-        <section>
-          Show an example of raw WebGL code vs Three.js
-        </section>
-      </section>
 
-      <section>
         <section>
-          <h3>JavaScript</h3>
+            <p>If you have a local copy of the slides from GitHub, you can open code/0.html in a text editor, hack away, and see the results in the browser (e.g.)</p>
+            <img src="img/browser.png"></img>
         </section>
+        <section>
+            <p>If you are running in Chrome you may have to run the page from localhost:8000/code/0.html instead (e.g.)</p>
+            <img src="img/server.png"></img>
+        </section>
+        <section>
+            <p>Of course you can just follow along or go right to hacking the examples</p>
+        </section>
+
         <section>
           <p>Firefox</p>
           <img src="./img/firefox.png"></img>
@@ -96,40 +123,7 @@
       </section>
 
       <section>
-        <section>
-        <p>Let's start with a minimal page</p>
-        <pre><code style="max-height: 100%">
-        &lt;!DOCTYPE html&gt;
-        &lt;html&gt;
-          &lt;head&gt;
-            &lt;meta charset=utf-8&gt;
-            &lt;title&gt;CERN Study Group: WebGL&lt;/title&gt;
-            &lt;style&gt;
-              body { margin: 0; }
-              canvas { width: 100%; height: 100% }
-            &lt;/style&gt;
-          &lt;/head&gt;
-          &lt;body&gt;
-            &lt;script src="js/three.min.js"&gt;&lt;/script&gt;
-            &lt;script&gt;
-            &lt;!-- We we will put our JavaScript here --&gt;
-            &lt;/script&gt;
-          &lt;/body&gt;
-        &lt;/html&gt;
-        </code></pre>
-      </section>
-
-        <section>
-            <p>If you have a local copy of the slides from GitHub, you can open code/0.html, hack away, and see the results in the browser (e.g.)</p>
-            <img src="img/browser.png"></img>
-            <p>If you are running in Chrome you may have to run the page from localhost:8000/code/0.html instead (e.g.)</p>
-            <img src="img/server.png"></img>
-        </section>
-
-      </section>
-
-      <section>
-        <p>There are 3 essentials: scene, camera, renderer</p>
+        <p>There are 3 essentials in a Three.js application: scene, camera, renderer</p>
       </section>
 
       <section>
@@ -143,6 +137,9 @@
  // Args: field-of-view, aspect ratio, near, far
  var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
  camera.position.z = 2;
+
+ // You can also write out to the console:
+ console.log('Camera position', camera.position);
         </code></pre>
       </section>
 
@@ -153,11 +150,16 @@
  renderer.setSize(w, h);
  renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
 
+ // The document is the main object that you manipulate with the JavaScript
+ // The domElement here is the canvas
  document.body.appendChild(renderer.domElement);
 
  var render = function () {
+   // This gets called 60 times/sec or at the refresh rate of the browser
    requestAnimationFrame(render);
+
    renderer.render(scene, camera);
+   stats.update();
  };
 
  render();
@@ -188,6 +190,7 @@
  var render = function () {
    requestAnimationFrame(render);
    renderer.render(scene, camera);
+   stats.update();
  };
 
  render();
@@ -195,16 +198,15 @@
           <p><a target="_blank" href="../code/2.html">See result here</a></p>
         </section>
         <section>
-          More on geometries, materials, and meshes here
+          <ul>
+            <li>Geometry: essentially an array of vertices describing points in space and an array of faces describing how the vertices are connected
+            <li>Material: describes the appearance of the object: color, transparency, etc.
+            <li>Mesh: a type of 3D object (other types are Lines, Points, etc.)
         </section>
       </section>
 
       <section>
-        <p>Better. But it doesn't do much, does it?</p>
-      </section>
-
-      <section>
-      <p>Even knowing that it won't do anything, I still can't help not to clicking on the cube
+      <p>Even knowing that it won't do anything, I still can't help clicking on the cube
         and trying to rotate it. However, that won't work (yet). We need to add controls
         that "listen" for what we do and then do something accordingly (like zoom or rotate).
       </p>
@@ -235,15 +237,22 @@
       </section>
 
       <section>
+        <section>
         <p>Change from wireframe:</p>
         <pre><code style="max-height: 100%">
  var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
         </code></pre>
         <p><a target="_blank" href="../code/4.html">See result here</a></p>
       </section>
+      <section>
+        <img src="img/console1.png"></img>
+      </section>
+      <section>
+        <img src="img/console2.png"></img>
+      </section>
+      </section>
 
       <section>
-        <section>
           <p>Let's change the material to something "fancier":</p>
           <pre><code style="max-height: 100%">
  var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -252,16 +261,6 @@
  scene.add(cube);
           </code></pre>
           <p><a target="_blank" href="../code/5.html">See result here</a></p>
-        </section>
-          <section>
-            More here on materials and lighting
-          </section>
-      </section>
-
-      <section>
-        <section>
-          Just black?
-        </section>
       </section>
 
       <section>
@@ -342,13 +341,137 @@
       </section>
 
       <section>
+        <p>Finally, let's end with something that just runs on its own and looks nice.</p>
+        <p>First, let's set the camera position to the origin:</p>
+        <pre><code style="max-height: 100%">
+  var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
+  camera.position.x = 0;
+  camera.position.y = 0;
+  camera.position.z = 0;
+        </code></pre>
+      </section>
+
+      <section>
+        <p>Then "turn off" the ambient light and add 3 point lights:</p>
+        <pre><code style="max-height: 100%">
+ var light = new THREE.AmbientLight(0x404040);
+ //scene.add(light);
+
+ var sphere = new THREE.SphereGeometry(0.01); // radius
+
+ p1 = new THREE.PointLight(0xff0000, 1, 5); // color, intensity, distance
+ p1.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0000 })));
+ scene.add(p1);
+
+ p2 = new THREE.PointLight(0x00ff00, 1, 5); // color, intensity, distance
+ p2.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x00ff00 })));
+ scene.add(p2);
+
+ p3 = new THREE.PointLight(0x0000ff, 1, 5); // color, intensity, distance
+ p3.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0000ff })));
+ scene.add(p3);
+      </code></pre>
+    </section>
+
+    <section>
+      <p>Make the box a bit smaller and create 4 materials (one for each texture)</p>
+        <pre><code style="max-height: 100%">
+ var geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+
+ var textures = ["img/cms-color-medium.png",
+                 "img/ATLAS-Logo-Ref-RGB-H_0.jpg",
+                 "img/newlogo2.jpg",
+                 "img/lhcb_logo.png",
+                 "img/CERN-logo.jpg"];
+
+ var materials = [];
+ for ( var i = 0; i < textures.length; i ++ ) {
+    materials[i] = new THREE.MeshPhongMaterial({map:new THREE.TextureLoader().load(textures[i])});
+ }
+ </code></pre>
+ </section>
+
+  <section>
+    <p>Scatter 1000 boxes throughout the scene</p>
+  <pre><code style="max-height: 100%">
+ for ( var j = 0; j < 1000; j++ ) {
+    var ti = Math.floor(Math.random()*5);
+    var object = new THREE.Mesh(geometry, materials[ti]);
+
+    object.position.x = Math.random()*10 - 5;
+    object.position.y = Math.random()*10 - 5;
+    object.position.z = Math.random()*10 - 5;
+    object.rotation.x = Math.random()*2*Math.PI;
+    object.rotation.y = Math.random()*2*Math.PI;
+    object.rotation.z = Math.random()*2*Math.PI;
+
+    scene.add(object);
+  }
+</code></pre>
+    </section>
+
+    <section>
+      <section>
+        <p>Finally in the render loop have the point lights move around and move the camera around the scene</p>
+        <pre><code style="max-height: 100%">
+ var theta = 0;
+
+ var render = function () {
+   requestAnimationFrame(render);
+   renderer.render(scene, camera);
+
+   var time = Date.now()*0.0005;
+
+   p1.position.x = Math.sin(time*0.7);
+   p1.position.y = Math.cos(time*0.5);
+   p1.position.z = Math.cos(time*0.3);
+
+   p2.position.x = Math.cos(time*0.3);
+   p2.position.y = Math.sin(time*0.5);
+   p2.position.z = Math.sin(time*0.7);
+
+   p3.position.x = Math.sin(time*0.7);
+   p3.position.y = Math.cos(time*0.3);
+   p3.position.z = Math.sin(time*0.5);
+        </code></pre>
+    </section>
+    <section>
+      <pre><code style="max-height: 100%">
+   theta += 0.1;
+   camera.position.x = Math.sin(THREE.Math.degToRad(theta));
+   camera.position.y = Math.sin(THREE.Math.degToRad(theta));
+   camera.position.z = Math.cos(THREE.Math.degToRad(theta));
+   camera.lookAt(scene.position);
+   camera.updateMatrixWorld();
+
+   //controls.update(); let the scene move around on its own
+   stats.update();
+ }
+      </code></pre>
+    </section>
+  </section>
+
+    <section>
+
+        <p><a target="_blank" href="../code/11.html">See result here</a></p>
+      </section>
+
+
+      <section>
         <h3>References and further information</h3>
+        <h4>With my parenthetical comments</h4>
         <ul>
           <li><a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">"JavaScript: The Good Parts", D. Crockford</a>
+             (A great guide to the good, bad, and ugly of JavaScript)
           <li><a href="https://www.nostarch.com/hemingway" target="_blank">"If Hemingway Wrote JavaScript", A. Croll</a>
-          <li><a href="http://www.amazon.co.uk/WebGL-Programming-Guide-Interactive-Graphics/dp/0321902920" target="_blank">"WebGL Programming Guide", K. Matsuda and R. Lea</a>
+            (Very entertaining but the JavaScript may make your head hurt)
+          <li><a href="http://www.amazon.co.uk/WebGL-Programming-Guide-Interactive-Graphics/dp/0321902920" target="_blank">
+            "WebGL Programming Guide", K. Matsuda and R. Lea</a>
+            (The nuts-and-bolts of WebGL)
           <li><a href="http://threejs.org/editor" target="_blank">http://threejs.org/editor</a>
+            (Graphical editor for Three.js projects)
           <li><a href="http://threejs.org/examples" target="_blank">http://threejs.org/examples</a>
+            (Great resource and from where I took my inspiration for many of the examples in these slides)
         </ul>
       </section>
     </div>

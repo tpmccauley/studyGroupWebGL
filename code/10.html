@@ -6,17 +6,25 @@
 		<style>
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
+			#stats {
+  			position: absolute;
+  			top:0;
+  			left: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="axes"></div>
 		<script src="js/three.min.js"></script>
+		<script src="js/stats.min.js"></script>
 		<script src="js/TrackballControls.js"></script>
 		<script>
 			var w = window.innerWidth;
 			var h = window.innerHeight;
 
 			var scene = new THREE.Scene();
+			var stats = new Stats();
+			document.body.appendChild(stats.domElement);
 
 			// Args: field-of-view, aspect ratio, near, far
 			var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
@@ -57,12 +65,13 @@
 
 			var render = function () {
 				requestAnimationFrame( render );
-				controls.update();
 
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
 
 				renderer.render(scene, camera);
+				controls.update();
+				stats.update();
 			};
 
 			render();
