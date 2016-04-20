@@ -42,20 +42,20 @@
 			controls.rotateSpeed = 3.0;
   		controls.zoomSpeed = 0.5;
 
-			var light = new THREE.AmbientLight( 0x404040 );
-			scene.add( light );
+			var light = new THREE.AmbientLight(0x404040); // toned-down light
+			scene.add(light);
 
-			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-			directionalLight.position.set( 0, 0.5, 1);
-			scene.add( directionalLight );
+			var directionalLight = new THREE.DirectionalLight(0xffffff, 1); // color and intensity
+			directionalLight.position.set(0, 0.5, 1);
+			scene.add(directionalLight);
 
-			var axes = new THREE.AxisHelper(2);
+			var axes = new THREE.AxisHelper(2); // length of the axes
 			scene.add(axes);
 
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
+      var geometry = new THREE.BoxGeometry(1, 1, 1);
+      var material = new THREE.MeshPhongMaterial({color: 0x00ff00});
+      var cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
 
 			var render = function () {
 				requestAnimationFrame( render );

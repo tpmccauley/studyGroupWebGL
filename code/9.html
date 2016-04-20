@@ -46,18 +46,19 @@
 			scene.add(light);
 
 			var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-			directionalLight.position.set( 0, 0.5, 1);
-			scene.add( directionalLight );
+			directionalLight.position.set(0, 0.5, 1);
+			scene.add(directionalLight);
 
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var geometry = new THREE.BoxGeometry(1, 1, 1);
       var material = new THREE.MeshPhongMaterial();
 			material.map = new THREE.TextureLoader().load("img/cms-color-medium.png");
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
+      var cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
 
 			var render = function () {
 				requestAnimationFrame( render );
 
+				// The cube rotates with respect to its local frame
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
 

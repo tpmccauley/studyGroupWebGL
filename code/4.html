@@ -39,10 +39,11 @@
 			controls.rotateSpeed = 3.0;
 			controls.zoomSpeed = 0.5;
 
-			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			var material = new THREE.MeshBasicMaterial( {color: 0x00ff00, wireframe:false} );
-			var cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
+			//var geometry = new THREE.BoxGeometry(1, 1, 1);
+			var geometry = new THREE.SphereGeometry(1.0);
+			var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:true});
+			var cube = new THREE.Mesh(geometry, material);
+			scene.add(cube);
 
 			var render = function () {
 				requestAnimationFrame(render);

@@ -213,7 +213,7 @@
     </section>
 
       <section>
-        <p>Add some controls and change cube to wireframe:</p>
+        <p>Add some controls:</p>
         <pre><code style="max-height: 100%">
  &lt;script src="js/TrackballControls.js">&lt;/script&gt;
         </code></pre>
@@ -223,7 +223,7 @@
  controls.zoomSpeed = 0.5;
 
  var geometry = new THREE.BoxGeometry(1, 1, 1);
- var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:true});
+ var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
  var cube = new THREE.Mesh(geometry, material);
  scene.add(cube);
 
@@ -238,8 +238,9 @@
 
       <section>
         <section>
-        <p>Change from wireframe:</p>
+        <p>Change the geometry to a sphere and show wireframe:</p>
         <pre><code style="max-height: 100%">
+ var geometry = new THREE.SphereGeometry(1.0); // radius
  var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
         </code></pre>
         <p><a target="_blank" href="../code/4.html">See result here</a></p>
@@ -253,7 +254,7 @@
       </section>
 
       <section>
-          <p>Let's change the material to something "fancier":</p>
+          <p>Let's change back to a box and change the material to something "fancier":</p>
           <pre><code style="max-height: 100%">
  var geometry = new THREE.BoxGeometry(1, 1, 1);
  var material = new THREE.MeshPhongMaterial({color: 0x00ff00});
@@ -286,7 +287,7 @@
  scene.add(light);
 
  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
- directionalLight.position.set( 0, 0.5, 1);
+ directionalLight.position.set(0, 0.5, 1);
  scene.add(directionalLight);
         </code></pre>
         <p><a target="_blank" href="../code/7.html">See result here</a></p>
@@ -296,7 +297,7 @@
         <p>Add a texture to the material:</p>
         <pre><code style="max-height: 100%">
  var material = new THREE.MeshPhongMaterial();
- material.map = new THREE.ImageUtils.loadTexture("cms-color-medium.png");
+ material.map = new THREE.TextureLoader().load("img/cms-color-medium.png");
         </code></pre>
         <p><a target="_blank" href="../code/8.html">See result here</a></p>
       </section>
@@ -305,7 +306,7 @@
         <p>Let's animate</p>
         <pre><code style="max-height: 100%">
  var render = function () {
-   requestAnimationFrame( render );
+   requestAnimationFrame(render);
    controls.update();
 
    cube.rotation.x += 0.01;
@@ -328,8 +329,8 @@
 
  var ti = 0;
  material.map = new THREE.TextureLoader().load(textures[0]);
- var cube = new THREE.Mesh( geometry, material );
- scene.add( cube );
+ var cube = new THREE.Mesh(geometry, material);
+ scene.add(cube);
  </code></pre>
 <pre><code style="max-height: 100%">
  window.addEventListener('click', function(){

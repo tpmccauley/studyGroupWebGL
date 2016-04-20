@@ -27,6 +27,7 @@
 
 			// Args: field-of-view, aspect ratio, near, far
 			var camera = new THREE.PerspectiveCamera(75, w/h, 0.1, 1000);
+			// Position the camera at the origin
 			camera.position.x = 0;
 			camera.position.y = 0;
 			camera.position.z = 0;
@@ -38,20 +39,20 @@
 			document.body.appendChild(renderer.domElement);
 
 			var light = new THREE.AmbientLight(0x404040);
-			//scene.add(light);
+			//scene.add(light); let's not add the ambient light to the scene
 
 			var sphere = new THREE.SphereGeometry(0.01); // radius
 
 			p1 = new THREE.PointLight(0xff0000, 1, 5); // color, intensity, distance
-			p1.add( new THREE.Mesh(sphere, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) ) );
+			p1.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0000})));
 			scene.add(p1);
 
 			p2 = new THREE.PointLight(0x00ff00, 1, 5); // color, intensity, distance
-			p2.add( new THREE.Mesh(sphere, new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) ) );
+			p2.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x00ff00 })));
 			scene.add(p2);
 
 			p3 = new THREE.PointLight(0x0000ff, 1, 5); // color, intensity, distance
-			p3.add( new THREE.Mesh(sphere, new THREE.MeshBasicMaterial( { color: 0x0000ff } ) ) );
+			p3.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0000ff })));
 			scene.add(p3);
 
       var geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
@@ -72,15 +73,15 @@
 				var ti = Math.floor(Math.random()*5);
 				var object = new THREE.Mesh(geometry, materials[ti]);
 
-					object.position.x = Math.random()*10 - 5;
-					object.position.y = Math.random()*10 - 5;
-					object.position.z = Math.random()*10 - 5;
-					object.rotation.x = Math.random()*2*Math.PI;
-					object.rotation.y = Math.random()*2*Math.PI;
-					object.rotation.z = Math.random()*2*Math.PI;
+				object.position.x = Math.random()*10 - 5;
+				object.position.y = Math.random()*10 - 5;
+				object.position.z = Math.random()*10 - 5;
+				object.rotation.x = Math.random()*2*Math.PI;
+				object.rotation.y = Math.random()*2*Math.PI;
+				object.rotation.z = Math.random()*2*Math.PI;
 
-					scene.add(object);
-				}
+				scene.add(object);
+			}
 
 			var theta = 0;
 
