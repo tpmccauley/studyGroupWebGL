@@ -43,25 +43,25 @@
 
 			var sphere = new THREE.SphereGeometry(0.01); // radius
 
-			p1 = new THREE.PointLight(0xff0000, 1, 5); // color, intensity, distance
+			var p1 = new THREE.PointLight(0xff0000, 1, 5); // color, intensity, distance
 			p1.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0000})));
 			scene.add(p1);
 
-			p2 = new THREE.PointLight(0x00ff00, 1, 5); // color, intensity, distance
+			var p2 = new THREE.PointLight(0x00ff00, 1, 5); // color, intensity, distance
 			p2.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x00ff00 })));
 			scene.add(p2);
 
-			p3 = new THREE.PointLight(0x0000ff, 1, 5); // color, intensity, distance
+			var p3 = new THREE.PointLight(0x0000ff, 1, 5); // color, intensity, distance
 			p3.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0000ff })));
 			scene.add(p3);
 
       var geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
 
-			var textures = ["img/cms-color-medium.png",
-											"img/ATLAS-Logo-Ref-RGB-H_0.jpg",
-											"img/newlogo2.jpg",
-											"img/lhcb_logo.png",
-											"img/CERN-logo.jpg"];
+			var textures = ["img/1.png",
+											"img/2.jpg",
+											"img/3.jpg",
+											"img/4.png",
+											"img/5.jpg"];
 
 			var materials = [];
 			for ( var i = 0; i < textures.length; i ++ ) {

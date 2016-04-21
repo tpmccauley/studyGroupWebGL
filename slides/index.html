@@ -306,7 +306,7 @@
         <p>Add a texture to the material:</p>
         <pre><code style="max-height: 100%">
  var material = new THREE.MeshPhongMaterial();
- material.map = new THREE.TextureLoader().load("img/cms-color-medium.png");
+ material.map = new THREE.TextureLoader().load("img/1.png");
         </code></pre>
         <p><a target="_blank" href="../code/8.html">See result here</a></p>
       </section>
@@ -330,11 +330,11 @@
       <section data-background-iframe="../code/bg.html">
         <p>Let's add an event listener (listen for "click") and add some other images:</p>
         <pre><code style="max-height: 100%">
- var textures = ["img/cms-color-medium.png",
-                 "img/ATLAS-Logo-Ref-RGB-H_0.jpg",
-                 "img/newlogo2.jpg",
-                 "img/lhcb_logo.png",
-                 "img/CERN-logo.jpg"];
+ var textures = ["img/1.png",
+                 "img/2.jpg",
+                 "img/3.jpg",
+                 "img/4.png",
+                 "img/5.jpg"];
 
  var ti = 0;
  material.map = new THREE.TextureLoader().load(textures[0]);
@@ -388,11 +388,11 @@
         <pre><code style="max-height: 100%">
  var geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
 
- var textures = ["img/cms-color-medium.png",
-                 "img/ATLAS-Logo-Ref-RGB-H_0.jpg",
-                 "img/newlogo2.jpg",
-                 "img/lhcb_logo.png",
-                 "img/CERN-logo.jpg"];
+ var textures = ["img/1.png",
+                 "img/2.jpg",
+                 "img/3.jpg",
+                 "img/4.png",
+                 "img/5.jpg"];
 
  var materials = [];
  for ( var i = 0; i < textures.length; i ++ ) {

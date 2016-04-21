@@ -31,16 +31,13 @@
 
 			var sphere = new THREE.SphereGeometry(0.01); // radius
 
-			p1 = new THREE.PointLight(0xff0000, 1, 5); // color, intensity, distance
-			p1.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0000})));
+			var p1 = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0000}));
 			scene.add(p1);
 
-			p2 = new THREE.PointLight(0x00ff00, 1, 5); // color, intensity, distance
-			p2.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x00ff00 })));
+			var p2 = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x00ff00 }));
 			scene.add(p2);
 
-			p3 = new THREE.PointLight(0x0000ff, 1, 5); // color, intensity, distance
-			p3.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0000ff })));
+			var p3 = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0000ff }));
 			scene.add(p3);
 
 			var theta = 0;

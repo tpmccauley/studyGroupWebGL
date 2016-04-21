@@ -40,7 +40,8 @@
 			controls.zoomSpeed = 0.5;
 
 			//var geometry = new THREE.BoxGeometry(1, 1, 1);
-			var geometry = new THREE.SphereGeometry(1.0);
+			// radius, number of width segments, number of height segments
+			var geometry = new THREE.SphereGeometry(1.0, 16, 16);
 			var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:true});
 			var cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
