@@ -2,7 +2,7 @@
 <head>
   <title>CERN Study Group: WebGL</title>
   <link rel="stylesheet" href="css/reveal.css">
-  <link rel="stylesheet" href="css/theme/white.css">
+  <link rel="stylesheet" href="css/theme/night.css">
 </head>
 <body>
   <div class="reveal">
@@ -10,7 +10,7 @@
 
       <section>
         <h3>Interactive graphics in the browser with WebGL</h3>
-        <h4>(Using Three.js)</h4>
+        <h4>(using Three.js)</h4>
         <div>
           Tom McCauley
           <p><a href="http://cern.ch/mccauley" target="_blank">thomas.mccauley@cern.ch</a></p>
@@ -150,12 +150,14 @@
  renderer.setSize(w, h);
  renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
 
- // The document is the main object that you manipulate with the JavaScript
+ // The document is the main object that
+ // you manipulate with the JavaScript
  // The domElement here is the canvas
  document.body.appendChild(renderer.domElement);
 
  var render = function () {
-   // This gets called 60 times/sec or at the refresh rate of the browser
+   // This gets called 60 times/sec or
+   // at the refresh rate of the browser
    requestAnimationFrame(render);
 
    renderer.render(scene, camera);
@@ -179,11 +181,12 @@
  var renderer = new THREE.WebGLRenderer({antialias:true});
  renderer.setSize(w, h);
  renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-
  document.body.appendChild(renderer.domElement);
 
  var geometry = new THREE.BoxGeometry(1, 1, 1);
- var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
+ var material = new THREE.MeshBasicMaterial({
+   color: 0x00ff00, wireframe:false
+  });
  var cube = new THREE.Mesh(geometry, material);
  scene.add(cube);
 
@@ -192,7 +195,6 @@
    renderer.render(scene, camera);
    stats.update();
  };
-
  render();
           </code></pre>
           <p><a target="_blank" href="../code/2.html">See result here</a></p>
@@ -207,7 +209,7 @@
 
       <section>
       <p>Even knowing that it won't do anything, I still can't help clicking on the cube
-        and trying to rotate it. However, that won't work (yet). We need to add controls
+        and trying to rotate it (perhaps you tried to move it as well). However, that won't work (yet). We need to add controls
         that "listen" for what we do and then do something accordingly (like zoom or rotate).
       </p>
     </section>
@@ -223,7 +225,9 @@
  controls.zoomSpeed = 0.5;
 
  var geometry = new THREE.BoxGeometry(1, 1, 1);
- var material = new THREE.MeshBasicMaterial({color: 0x00ff00, wireframe:false});
+ var material = new THREE.MeshBasicMaterial({
+   color: 0x00ff00, wireframe:false
+  });
  var cube = new THREE.Mesh(geometry, material);
  scene.add(cube);
 
@@ -387,7 +391,8 @@
 
  var materials = [];
  for ( var i = 0; i < textures.length; i ++ ) {
-    materials[i] = new THREE.MeshPhongMaterial({map:new THREE.TextureLoader().load(textures[i])});
+    materials[i] =
+     new THREE.MeshPhongMaterial({map:new THREE.TextureLoader().load(textures[i])});
  }
  </code></pre>
  </section>
@@ -452,13 +457,10 @@
     </section>
   </section>
 
-    <section>
-
-        <p><a target="_blank" href="../code/11.html">See result here</a></p>
+      <section data-background-iframe="../code/11.html">
       </section>
 
-
-      <section>
+      <section data-background-iframe="../code/11.html">
         <h3>References and further information</h3>
         <h4>With my parenthetical comments</h4>
         <ul>
@@ -474,6 +476,7 @@
           <li><a href="http://threejs.org/examples" target="_blank">http://threejs.org/examples</a>
             (Great resource and from where I took my inspiration for many of the examples in these slides)
         </ul>
+        <p><h4>Thank you</h4></p>
       </section>
     </div>
   </div>
