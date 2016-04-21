@@ -8,7 +8,7 @@
   <div class="reveal">
     <div class="slides">
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <h3>Interactive graphics in the browser with WebGL</h3>
         <h4>(using Three.js)</h4>
         <div>
@@ -22,7 +22,7 @@
         </div>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <h3>Outline</h3>
         <ul>
           <li>WebGL
@@ -40,7 +40,8 @@
         </p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
+        <section>
         <h3>WebGL</h3>
         <ul>
           <li>JavaScript API for rendering interactive graphics in the browser (in the HTML5 canvas)
@@ -48,9 +49,13 @@
           <li>Use the GPU
         </ul>
         <a href="http://cern.ch/ispy-webgl" target="_blank">Event display for CMS</a>
+        </section>
+        <section>
+          <img src="img/diphoton1_v3.png"></img>
+        </section>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <h3>Is WebGL enabled?</h3>
         <h4>Not for all browsers (yet).</h4>
         <p>
@@ -60,7 +65,7 @@
         <p><a target="_blank" href="http://www.doesmybrowsersupportwebgl.com">http://www.doesmybrowsersupportwebgl.com</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <h3>Three.js</h3>
         <ul>
           <li>A JavaScript API for WebGL; "raw" WebGL requires a lot of boilerplate and may include shader language
@@ -70,7 +75,7 @@
         <p><a href="http://threejs.org" target="_blank">http://threejs.org</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <section>
         <p>Let's start with a minimal page</p>
         <pre><code style="max-height: 100%">
@@ -96,7 +101,7 @@
         </code></pre>
         </section>
 
-        <section>
+        <section data-background-iframe="../code/bg.html">
             <p>If you have a local copy of the slides from GitHub, you can open code/0.html in a text editor, hack away, and see the results in the browser (e.g.)</p>
             <img src="img/browser.png"></img>
         </section>
@@ -108,7 +113,7 @@
             <p>Of course you can just follow along or go right to hacking the examples</p>
         </section>
 
-        <section>
+        <section data-background-iframe="../code/bg.html">
           <p>Firefox</p>
           <img src="./img/firefox.png"></img>
         </section>
@@ -122,11 +127,11 @@
         </section>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>There are 3 essentials in a Three.js application: scene, camera, renderer</p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Add a scene and a camera:</p>
         <pre><code style="max-height: 100%">
  var w = window.innerWidth;
@@ -143,7 +148,7 @@
         </code></pre>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Add a renderer and a render loop</p>
         <pre><code style="max-height: 100%">
  var renderer = new THREE.WebGLRenderer({antialias:true});
@@ -169,12 +174,12 @@
         <p><a target="_blank" href="../code/1.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>The canvas is there. We just haven't added anything to the scene yet:</p>
         <img src="./img/one.png"></img>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <section>
           <p>Add a cube to the scene:</p>
           <pre><code style="max-height: 100%">
@@ -207,14 +212,14 @@
         </section>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
       <p>Even knowing that it won't do anything, I still can't help clicking on the cube
         and trying to rotate it (perhaps you tried to move it as well). However, that won't work (yet). We need to add controls
         that "listen" for what we do and then do something accordingly (like zoom or rotate).
       </p>
     </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Add some controls:</p>
         <pre><code style="max-height: 100%">
  &lt;script src="js/TrackballControls.js">&lt;/script&gt;
@@ -240,7 +245,7 @@
         <p><a target="_blank" href="../code/3.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <section>
         <p>Change the geometry to a sphere and show wireframe:</p>
         <pre><code style="max-height: 100%">
@@ -257,7 +262,7 @@
       </section>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
           <p>Let's change back to a box and change the material to something "fancier":</p>
           <pre><code style="max-height: 100%">
  var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -268,7 +273,7 @@
           <p><a target="_blank" href="../code/5.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>For some materials, we need a light. Let's add an ambient light to the scene:</p>
         <pre><code style="max-height: 100%">
  var light = new THREE.AmbientLight(0xffffff);
@@ -277,7 +282,7 @@
         <p><a target="_blank" href="../code/6.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Let's tone down the ambient light a bit, add a directional light, and change the initial position of the camera.
            I've also added in the example an axes indicator: <span style="color:red;">X</span><span style="color:green;">Y</span><span style="color:blue;">Z</span>
         </p>
@@ -297,7 +302,7 @@
         <p><a target="_blank" href="../code/7.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Add a texture to the material:</p>
         <pre><code style="max-height: 100%">
  var material = new THREE.MeshPhongMaterial();
@@ -306,7 +311,7 @@
         <p><a target="_blank" href="../code/8.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Let's animate</p>
         <pre><code style="max-height: 100%">
  var render = function () {
@@ -322,7 +327,7 @@
         <p><a target="_blank" href="../code/9.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Let's add an event listener (listen for "click") and add some other images:</p>
         <pre><code style="max-height: 100%">
  var textures = ["img/cms-color-medium.png",
@@ -345,7 +350,7 @@
       <p><a target="_blank" href="../code/10.html">See result here</a></p>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Finally, let's end with something that just runs on its own and looks nice.</p>
         <p>First, let's set the camera position to the origin:</p>
         <pre><code style="max-height: 100%">
@@ -356,7 +361,7 @@
         </code></pre>
       </section>
 
-      <section>
+      <section data-background-iframe="../code/bg.html">
         <p>Then "turn off" the ambient light and add 3 point lights:</p>
         <pre><code style="max-height: 100%">
  var light = new THREE.AmbientLight(0x404040);
@@ -378,7 +383,7 @@
       </code></pre>
     </section>
 
-    <section>
+    <section data-background-iframe="../code/bg.html">
       <p>Make the box a bit smaller and create 4 materials (one for each texture)</p>
         <pre><code style="max-height: 100%">
  var geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
@@ -397,7 +402,7 @@
  </code></pre>
  </section>
 
-  <section>
+  <section data-background-iframe="../code/bg.html">
     <p>Scatter 1000 boxes throughout the scene</p>
   <pre><code style="max-height: 100%">
  for ( var j = 0; j < 1000; j++ ) {
@@ -416,7 +421,7 @@
 </code></pre>
     </section>
 
-    <section>
+    <section data-background-iframe="../code/bg.html">
       <section>
         <p>Finally in the render loop have the point lights move around and move the camera around the scene</p>
         <pre><code style="max-height: 100%">
@@ -477,6 +482,7 @@
             (Great resource and from where I took my inspiration for many of the examples in these slides)
         </ul>
         <p><h4>Thank you</h4></p>
+        <p>For CERNois: <a href="">webgl-interest@cern.ch</a> egroup</p>
       </section>
     </div>
   </div>
